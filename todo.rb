@@ -28,24 +28,17 @@ class Todo < ActiveRecord::Base
     puts "My Todo-list\n\n"
 
     puts "Overdue\n"
-    overdue.each do |todo|
-            puts todo.to_displayable_string
-    end
+    puts overdue.map { |todo| todo.to_displayable_string }
+
     puts "\n\n"
 
     puts "Due Today\n"
-
-    due_today.each do |todo|
-      puts todo.to_displayable_string
-    end
+    puts due_today.map { |todo| todo.to_displayable_string }
 
     puts "\n\n"
 
     puts "Due Later\n"
-    due_later.each do |todo|
-      puts todo.to_displayable_string
-    end
-
+    puts due_later.map { |todo| todo.to_displayable_string }
 
     puts "\n\n"
   end
@@ -58,5 +51,6 @@ class Todo < ActiveRecord::Base
     record_mark_complete = Todo.find(todo_id)
     record_mark_complete.completed = true
     record_mark_complete.save
+    record_mark_complete
   end
 end
